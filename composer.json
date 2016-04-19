@@ -1,0 +1,28 @@
+{
+	"name": "skeeks/cms-db-dumper",
+	"description": "Database dumper for SkeekS CMS",
+	"keywords": ["yii", "skeeks", "framework", "component", "db", "dump"],
+    	"homepage": "http://cms.skeeks.com/",
+	"type": "yii2-extension",
+	"license": "GPL-3.0+",
+	"support": {
+        "issues": "http://skeeks.com/",
+        "wiki": "http://en.cms.skeeks.com/docs/",
+        "source": "https://github.com/skeeks-cms/cms-db-dumper"
+    },
+	"authors": [
+		{
+			"name": "Semenov Alexander",
+			"email": "semenov@skeeks.com"
+		}
+	],
+	"require": {
+		"skeeks/cms": "*",
+	  	"ifsnop/mysqldump-php":"*"
+	},
+    "autoload": {
+        "psr-4": {
+            "skeeks\\cms\\dbDumper\\": ""
+        }
+    }
+}
