@@ -6,6 +6,7 @@
  * @date 19.04.2016
  */
 namespace skeeks\cms\dbDumper;
+use Ifsnop\Mysqldump\Mysqldump;
 use yii\base\Component;
 use yii\db\Connection;
 use yii\helpers\FileHelper;
@@ -38,7 +39,7 @@ class DbDumperComponent extends Component
         /**
          * TODO: добавить проверки
          */
-        $this->connection = \Yii::$app->{$this->dbConnectionName};
+        $this->connection = \Yii::$app->{$this->db};
 
         if (!$this->connection || !$this->connection instanceof Connection)
         {

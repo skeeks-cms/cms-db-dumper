@@ -14,7 +14,7 @@ return [
                     'class'             => 'yii\i18n\PhpMessageSource',
                     'basePath'          => '@skeeks/cms/dbDumper/messages',
                     'fileMap' => [
-                        'skeeks/dbDumper' => 'app.php',
+                        'skeeks/dbDumper' => 'main.php',
                     ],
                 ]
             ]
