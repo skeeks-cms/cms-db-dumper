@@ -12,7 +12,7 @@ use yii\base\Module;
  * Class DbDumperModule
  * @package skeeks\cms\dbDumper
  */
-class DbDumperModule extends Module
+class DbDumperModule extends \yii\base\Module
 {
     public $controllerNamespace = 'skeeks\cms\dbDumper\controllers';
 }
