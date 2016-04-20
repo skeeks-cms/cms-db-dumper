@@ -24,7 +24,8 @@ return [
     'modules' =>
     [
         'dbDumper' => [
-            'class'         => '\skeeks\cms\dbDumper\DbDumperModule',
+            'class'                         => 'skeeks\cms\dbDumper\DbDumperModule',
+            'controllerNamespace'           => 'skeeks\cms\dbDumper\console\controllers',
         ]
     ]
 ];

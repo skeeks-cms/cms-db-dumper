@@ -103,7 +103,7 @@ JS
 
         <?
             echo \mihaildev\elfinder\ElFinder::widget([
-                'language'         => \Yii::$app->admin->languageCode,
+                'language'         => \Yii::$app->language,
                 'controller'       => 'cms/elfinder-full', // вставляем название контроллера, по умолчанию равен elfinder
                 'path'           => $dbBackupDir->getPath(),
                 //'filter'           => 'image',    // фильтр файлов, можно задать массив фильтров https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#wiki-onlyMimes
