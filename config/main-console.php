@@ -4,7 +4,7 @@ return [
     'components' =>
     [
         'dbDumper' => [
-            'class'         => '\skeeks\cms\dbDumper\DbDumperComponent',
+            'class'         => 'skeeks\cms\dbDumper\DbDumperComponent',
         ],
 
         'i18n' => [
