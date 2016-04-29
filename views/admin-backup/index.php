@@ -114,6 +114,6 @@ JS
             ]);
         ?>
     <? else: ?>
-        <p><?=\Yii::t('app','Directory with files of backups database is not found.')?></p>
+        <p><?=\Yii::t('skeeks/dbDumper','Directory with files of backups database is not found.')?></p>
     <? endif; ?>
 </div>

@@ -2,7 +2,7 @@
 return [
     'dbDumper/db/dump' =>
     [
-        'description'       => 'Бэкап базы данных',
+        'description'       => \Yii::t('skeeks/dbDumper','Backup Database'),
         'agent_interval'    => 3600*24,
     ],
 ];

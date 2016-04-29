@@ -17,4 +17,6 @@ return [
     'The cache is updated successfully' => 'Кэш обновлен успешно',
     'Backups' => 'Бэкапы',
     'Make a backup' => 'Сделать бэкап',
+    'Incorrect connection to the database' => 'Некорректный коннект к базе данных',
+    'Backup Database' => 'Бэкап базы данных',
 ];

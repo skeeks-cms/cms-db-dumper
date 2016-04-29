@@ -44,7 +44,7 @@ class AdminBackupController extends AdminController
 
 
                 $rr->success = true;
-                $rr->message = \Yii::t('app',"A copy created successfully");
+                $rr->message = \Yii::t('skeeks/dbDumper',"A copy created successfully");
                 $rr->data = [
                     'result' => $result
                 ];

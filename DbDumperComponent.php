@@ -43,7 +43,7 @@ class DbDumperComponent extends Component
 
         if (!$this->connection || !$this->connection instanceof Connection)
         {
-            throw new \InvalidArgumentException("Некорректный коннект к базе данных");
+            throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Incorrect connection to the database"));
         }
     }
 
@@ -64,7 +64,7 @@ class DbDumperComponent extends Component
 
         if (!is_dir($this->backupDirPath))
         {
-            throw new \InvalidArgumentException("Folder to store the backup file is not found and could not be created: " . $this->backupDirPath);
+            throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Folder to store the backup file is not found and could not be created").": " . $this->backupDirPath);
         }
 
         $filePath   = $this->backupDirPath . "/db__" . date('Y-m-d_H:i:s') . ".sql";
@@ -91,12 +91,12 @@ class DbDumperComponent extends Component
         {
             if (!is_dir($this->backupDirPath))
             {
-                throw new \InvalidArgumentException("Do not locate the folder with the backup database: " . $this->backupDirPath);
+                throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Do not locate the folder with the backup database").": " . $this->backupDirPath);
             }
 
             if (!$files = FileHelper::findFiles($this->backupDirPath))
             {
-                throw new \InvalidArgumentException("Backup files found in a dir: " . $this->backupDirPath);
+                throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Backup files found in a dir").": " . $this->backupDirPath);
             }
 
             $filePath = $files[0];
@@ -108,14 +108,14 @@ class DbDumperComponent extends Component
 
         if (!file_exists($filePath) || !is_readable($filePath))
         {
-            throw new \InvalidArgumentException("Dump file is not found");
+            throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Dump file is not found"));
         }
 
         $sql = file_get_contents($filePath);
 
         if (!$sql)
         {
-            throw new \InvalidArgumentException("Sql query is invalid");
+            throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Sql query is invalid"));
         }
 
         \Yii::$app->db->createCommand($sql)->execute();

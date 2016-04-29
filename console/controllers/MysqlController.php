@@ -31,12 +31,12 @@ class MysqlController extends \yii\console\Controller
     {
         try
         {
-            $this->stdout("The installation process is running the database\n");
+            $this->stdout(\Yii::t('skeeks/dbDumper',"The installation process is running the database")."\n");
             \Yii::$app->dbDumper->restore($fileName);
-            $this->stdout("Dump successfully installed\n", Console::FG_GREEN);
+            $this->stdout(\Yii::t('skeeks/dbDumper',"Dump successfully installed")."\n", Console::FG_GREEN);
         } catch(\Exception $e)
         {
-            $this->stdout("In the process of restoring the dump occurred error: {$e->getMessage()}\n", Console::FG_RED);
+            $this->stdout(\Yii::t('skeeks/dbDumper',"In the process of restoring the dump occurred error").": {$e->getMessage()}\n", Console::FG_RED);
         }
     }
 
@@ -48,10 +48,10 @@ class MysqlController extends \yii\console\Controller
         try
         {
             $result = \Yii::$app->dbDumper->dump();
-            $this->stdout("Dump the database was created successfully: {$result}\n", Console::FG_GREEN);
+            $this->stdout(\Yii::t('skeeks/dbDumper',"Dump the database was created successfully").": {$result}\n", Console::FG_GREEN);
         } catch(\Exception $e)
         {
-            $this->stdout("During the dump error occurred: {$e->getMessage()}\n", Console::FG_RED);
+            $this->stdout(\Yii::t('skeeks/dbDumper',"During the dump error occurred").": {$e->getMessage()}\n", Console::FG_RED);
         }
     }
 
