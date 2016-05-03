@@ -1,4 +1,4 @@
-Admin controll panel for SkeekS CMS
+Database dumper for SkeekS CMS
 ===================================
 
 Installation
@@ -9,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist skeeks/cms-admin "*"
+php composer.phar require --prefer-dist skeeks/cms-db-dumper "*"
 ```
 
 or add
 
 ```
-"skeeks/cms-admin": "*"
+"skeeks/cms-db-dumper": "*"
 ```
 
 Configuration app
@@ -23,32 +23,39 @@ Configuration app
 
 ```php
 
-'components' => [
-
-    'admin' =>
-    [
-        'class' => '\skeeks\cms\modules\admin\components\settings\AdminSettings'
+'components' =>
+[
+    'dbDumper' => [
+        'class'         => '\skeeks\cms\dbDumper\DbDumperComponent',
     ],
-
-    'urlManager' => [
-        'rules' => [
-            'cms-admin' => [
-                "class" => 'skeeks\cms\modules\admin\components\UrlRule',
-                'adminPrefix' => '~sx'
-            ],
+    'i18n' => [
+        'translations' =>
+        [
+            'skeeks/dbDumper' => [
+                'class'             => 'yii\i18n\PhpMessageSource',
+                'basePath'          => '@skeeks/cms/dbDumper/messages',
+                'fileMap' => [
+                    'skeeks/dbDumper' => 'main.php',
+                ],
+            ]
         ]
-    ]
-],
-
-'modules' => [
-
-    'admin' =>
-    [
-        'class' => '\skeeks\cms\modules\admin\Module'
     ],
 ],
+'modules' =>
+[
+    'dbDumper' => [
+        'class'         => '\skeeks\cms\dbDumper\DbDumperModule',
+    ]
+]
 
 ```
+
+##Links
+* [Web site](http://en.cms.skeeks.com)
+* [Web site (rus)](http://cms.skeeks.com)
+* [Author](http://skeeks.com)
+* [ChangeLog](https://github.com/skeeks-cms/cms-db-dumper/blob/master/CHANGELOG.md)
+
 
 ___
 
