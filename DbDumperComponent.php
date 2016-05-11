@@ -47,6 +47,11 @@ class DbDumperComponent extends Component
          */
         $this->connection = \Yii::$app->{$this->db};
 
+        if (!is_dir($this->backupDirPath))
+        {
+            FileHelper::createDirectory($this->backupDirPath);
+        }
+
         if (!$this->connection || !$this->connection instanceof Connection)
         {
             throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Incorrect connection to the database"));
