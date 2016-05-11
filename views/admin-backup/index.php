@@ -8,7 +8,18 @@
 /* @var $this yii\web\View */
 /* @var $dbBackupDir \skeeks\sx\Dir */
 
-$dbBackupDir = new \skeeks\sx\Dir(\Yii::$app->dbDumper->backupDirPath);
+$filesObjects = [];
+$files = \yii\helpers\FileHelper::findFiles(\Yii::$app->dbDumper->backupDirPath);
+foreach ($files as $filePath)
+{
+    $filesObjects[] = [
+        'path' => $filePath,
+        'filemtime' => filemtime($filePath)
+    ];
+}
+\yii\helpers\ArrayHelper::multisort($filesObjects, 'filemtime', SORT_DESC);
+
+
 $backend = \yii\helpers\Url::to(['dump']);
 
 
@@ -73,27 +84,39 @@ JS
 
     <br />
     <br />
-    <? if ($dbBackupDir->isExist()) : ?>
+    <? if (file_exists(\Yii::$app->dbDumper->backupDirPath)) : ?>
         <?= \skeeks\cms\modules\admin\widgets\GridView::widget([
                 'dataProvider'  => new \yii\data\ArrayDataProvider([
-                    'allModels' => $dbBackupDir->findFiles()
+                    'allModels' => $filesObjects
                 ]),
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
                     [
                         'class'         => \yii\grid\DataColumn::className(),
-                        'value' => function(\skeeks\sx\File $model)
+                        'format'        => 'raw',
+                        'attribute'     => 'filemtime',
+                        'label'         => \Yii::t('skeeks/dbDumper', 'Time of creation'),
+                        'value' => function($data)
                         {
-                            return $model->getBaseName();
+                            return \Yii::$app->formatter->asDatetime( \yii\helpers\ArrayHelper::getValue($data, 'filemtime') ) .
+                                " <small>" . \Yii::$app->formatter->asRelativeTime( \yii\helpers\ArrayHelper::getValue($data, 'filemtime') ) . "</small>";
                         }
                     ],
 
                     [
                         'class'         => \yii\grid\DataColumn::className(),
-                        'value' => function(\skeeks\sx\File $model)
+                        'value' => function($data)
                         {
-                            return $model->size()->formatedSize();
+                            return basename( \yii\helpers\ArrayHelper::getValue($data, 'path') );
+                        }
+                    ],
+
+                    [
+                        'class'         => \yii\grid\DataColumn::className(),
+                        'value' => function($data)
+                        {
+                            return \Yii::$app->formatter->asShortSize( filesize(\yii\helpers\ArrayHelper::getValue($data, 'path')) );
                         }
                     ],
 
@@ -105,7 +128,7 @@ JS
             echo \mihaildev\elfinder\ElFinder::widget([
                 'language'         => \Yii::$app->language,
                 'controller'       => 'cms/elfinder-full', // вставляем название контроллера, по умолчанию равен elfinder
-                'path'           => $dbBackupDir->getPath(),
+                'path'           => \Yii::$app->dbDumper->backupDirPath,
                 //'filter'           => 'image',    // фильтр файлов, можно задать массив фильтров https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#wiki-onlyMimes
                 'callbackFunction' => new \yii\web\JsExpression('function(file, id){}'), // id - id виджета
                 'frameOptions' => [

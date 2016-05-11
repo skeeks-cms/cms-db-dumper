@@ -9,6 +9,7 @@ namespace skeeks\cms\dbDumper;
 use Ifsnop\Mysqldump\Mysqldump;
 use yii\base\Component;
 use yii\db\Connection;
+use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 
 /**
@@ -28,6 +29,11 @@ class DbDumperComponent extends Component
     public $db        = "db";
 
     /**
+     * @var int Number of backup files. The old will be deleted
+     */
+    public $totalBackups  = 15;
+
+    /**
      * @var Connection
      */
     public $connection;
@@ -45,6 +51,54 @@ class DbDumperComponent extends Component
         {
             throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Incorrect connection to the database"));
         }
+    }
+
+    /**
+     * @return int
+     */
+    public function clear()
+    {
+        if (!dir($this->backupDirPath))
+        {
+            return 0;
+        }
+
+        $filesObjects = [];
+        $files = \yii\helpers\FileHelper::findFiles($this->backupDirPath);
+        foreach ($files as $filePath)
+        {
+            $filesObjects[] = [
+                'path' => $filePath,
+                'filemtime' => filemtime($filePath)
+            ];
+        }
+
+        if (!$filesObjects)
+        {
+            return 0;
+        }
+
+        \yii\helpers\ArrayHelper::multisort($filesObjects, 'filemtime', SORT_DESC);
+
+        $counter = 0;
+        $removed = 0;
+        foreach ($filesObjects as $fileData)
+        {
+            $counter ++;
+            if ($counter > $this->totalBackups)
+            {
+                $file = ArrayHelper::getValue($fileData, 'path');
+                if (file_exists($file))
+                {
+                    if (@unlink($file))
+                    {
+                        $removed ++;
+                    }
+                }
+            }
+        }
+
+        return $removed;
     }
 
     /**

@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.0-rc1
+-----------------
+  * Removing old backups, by default 15 (totalBackups)
+
 1.0.0-beta
 -----------------
   * Add translation
