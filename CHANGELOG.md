@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.0
+-----------------
+  * Stable release
+
 1.0.0-rc3
 -----------------
   * Automatic creation of a directory if it is missing
