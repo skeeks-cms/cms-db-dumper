@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.1
+-----------------
+  * Fixed https://github.com/skeeks-cms/cms/issues/24
+
 1.0.0
 -----------------
   * Stable release

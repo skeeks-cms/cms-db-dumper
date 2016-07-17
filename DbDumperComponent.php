@@ -21,7 +21,7 @@ class DbDumperComponent extends Component
     /**
      * @var string
      */
-    public $backupDirPath = ROOT_DIR . "/backup/db";
+    public $backupDirPath = '';
 
     /**
      * @var string
@@ -40,6 +40,11 @@ class DbDumperComponent extends Component
 
     public function init()
     {
+        if (!$this->backupDirPath)
+        {
+            $this->backupDirPath = ROOT_DIR . "/backup/db";
+        }
+
         parent::init();
 
         /**
