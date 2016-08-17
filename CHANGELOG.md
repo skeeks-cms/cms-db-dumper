@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.2
+-----------------
+  * Fixed memry limit db restore
+
 1.0.1
 -----------------
   * Fixed https://github.com/skeeks-cms/cms/issues/24

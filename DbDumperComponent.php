@@ -145,6 +145,7 @@ class DbDumperComponent extends Component
      */
     public function restore($fileDumpSql = null)
     {
+        ini_set("memory_limit","2048M");
         ignore_user_abort(true);
         set_time_limit(0);
 
