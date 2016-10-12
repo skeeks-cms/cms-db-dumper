@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.1.0
+-----------------
+  * Fixed https://github.com/skeeks-cms/cms-db-dumper/issues/2
+
 1.0.2
 -----------------
   * Fixed memry limit db restore

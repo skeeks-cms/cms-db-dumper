@@ -131,7 +131,7 @@ class DbDumperComponent extends Component
             throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',"Folder to store the backup file is not found and could not be created").": " . $this->backupDirPath);
         }
 
-        $filePath   = $this->backupDirPath . "/db__" . date('Y-m-d_H:i:s') . ".sql";
+        $filePath   = $this->backupDirPath . "/db__" . date('Y-m-d_H-i-s') . ".sql";
 
         $dump = new Mysqldump($this->connection->dsn, $this->connection->username, $this->connection->password);
         $dump->start($filePath);
