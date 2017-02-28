@@ -20,7 +20,7 @@ foreach ($files as $filePath)
 \yii\helpers\ArrayHelper::multisort($filesObjects, 'filemtime', SORT_DESC);
 
 
-$backend = \yii\helpers\Url::to(['dump']);
+$backend = \yii\helpers\Url::to(['dump', \skeeks\cms\modules\admin\components\UrlRule::ADMIN_PARAM_NAME => \skeeks\cms\modules\admin\components\UrlRule::ADMIN_PARAM_VALUE]);
 
 
 ?>

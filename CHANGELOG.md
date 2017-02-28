@@ -1,6 +1,11 @@
 CHANGELOG
 ==============
 
+1.2.0
+-----------------
+  * Go to src
+  * Updated admin url
+
 1.1.0
 -----------------
   * Fixed https://github.com/skeeks-cms/cms-db-dumper/issues/2

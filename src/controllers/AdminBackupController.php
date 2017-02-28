@@ -2,8 +2,8 @@
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (—ÍËÍ—)
- * @date 19.04.2016
+ * @copyright 2010 SkeekS (–°–∫–∏–∫–°)
+ * @date 28.02.2017
  */
 namespace skeeks\cms\dbDumper\controllers;
 use skeeks\cms\helpers\RequestResponse;
