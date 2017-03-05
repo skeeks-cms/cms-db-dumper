@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.2.1.pre
+-----------------
+  * Updated admin url
+
 1.2.0
 -----------------
   * Go to src
