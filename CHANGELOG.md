@@ -1,7 +1,7 @@
 CHANGELOG
 ==============
 
-1.2.1.pre
+1.2.1
 -----------------
   * Updated admin url
 
