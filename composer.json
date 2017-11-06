@@ -35,8 +35,7 @@
             "console": [
                 "$common",
                 "src/config/console.php"
-            ],
-			"admin-menu": "src/config/admin/menu.php"
+            ]
         }
     }
 }
