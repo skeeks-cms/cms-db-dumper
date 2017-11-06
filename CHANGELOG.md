@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.3.0
+-----------------
+  * Using composer-config-plugin
+
 1.2.1
 -----------------
   * Updated admin url
