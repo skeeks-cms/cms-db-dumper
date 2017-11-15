@@ -2,10 +2,12 @@
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (ÑêèêÑ)
+ * @copyright 2010 SkeekS (ï¿½ï¿½ï¿½ï¿½ï¿½)
  * @date 19.04.2016
  */
+
 namespace skeeks\cms\dbDumper\controllers;
+
 use skeeks\cms\helpers\RequestResponse;
 use skeeks\cms\modules\admin\actions\AdminAction;
 use skeeks\cms\modules\admin\controllers\AdminController;
@@ -20,7 +22,7 @@ class AdminSettingsController extends AdminController
 {
     public function init()
     {
-        $this->name = \Yii::t('skeeks/dbDumper',"Settings");
+        $this->name = \Yii::t('skeeks/dbDumper', "Settings");
 
         parent::init();
     }
@@ -34,8 +36,7 @@ class AdminSettingsController extends AdminController
     {
         $rr = new RequestResponse();
 
-        if ($rr->isRequestAjaxPost())
-        {
+        if ($rr->isRequestAjaxPost()) {
             \Yii::$app->db->schema->refresh();
             $rr->message = \Yii::t('skeeks/dbDumper', 'The cache is updated successfully');
             $rr->success = true;

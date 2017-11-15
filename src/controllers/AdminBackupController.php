@@ -5,7 +5,9 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 28.02.2017
  */
+
 namespace skeeks\cms\dbDumper\controllers;
+
 use skeeks\cms\helpers\RequestResponse;
 use skeeks\cms\modules\admin\actions\AdminAction;
 use skeeks\cms\modules\admin\controllers\AdminController;
@@ -20,7 +22,7 @@ class AdminBackupController extends AdminController
 {
     public function init()
     {
-        $this->name = \Yii::t('skeeks/dbDumper',"Backups");
+        $this->name = \Yii::t('skeeks/dbDumper', "Backups");
 
         parent::init();
     }
@@ -34,23 +36,20 @@ class AdminBackupController extends AdminController
     {
         $rr = new RequestResponse();
 
-        if ($rr->isRequestAjaxPost())
-        {
-            try
-            {
+        if ($rr->isRequestAjaxPost()) {
+            try {
                 ob_start();
-                    \Yii::$app->dbDumper->dump();
+                \Yii::$app->dbDumper->dump();
                 $result = ob_get_clean();
 
 
                 $rr->success = true;
-                $rr->message = \Yii::t('skeeks/dbDumper',"A copy created successfully");
+                $rr->message = \Yii::t('skeeks/dbDumper', "A copy created successfully");
                 $rr->data = [
                     'result' => $result
                 ];
 
-            } catch (\Exception $e)
-            {
+            } catch (\Exception $e) {
                 $rr->success = false;
                 $rr->message = $e->getMessage();
             }

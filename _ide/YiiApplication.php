@@ -9,12 +9,15 @@
  */
 
 namespace yii\web;
+
 use skeeks\cms\dbDumper\DbDumperComponent;
+
 /**
- * @property DbDumperComponent                $dbDumper
+ * @property DbDumperComponent $dbDumper
  *
  * Class Application
  * @package yii\web
  */
 class Application
-{}
+{
+}

@@ -5,7 +5,9 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 14.04.2016
  */
+
 namespace skeeks\cms\dbDumper\assets;
+
 use yii\web\AssetBundle;
 
 /**

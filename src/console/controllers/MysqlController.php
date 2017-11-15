@@ -5,6 +5,7 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 18.03.2016
  */
+
 namespace skeeks\cms\dbDumper\console\controllers;
 
 use Yii;
@@ -29,14 +30,13 @@ class MysqlController extends \yii\console\Controller
      */
     public function actionRestore($fileName = null)
     {
-        try
-        {
-            $this->stdout(\Yii::t('skeeks/dbDumper',"The installation process is running the database")."\n");
+        try {
+            $this->stdout(\Yii::t('skeeks/dbDumper', "The installation process is running the database") . "\n");
             \Yii::$app->dbDumper->restore($fileName);
-            $this->stdout(\Yii::t('skeeks/dbDumper',"Dump successfully installed")."\n", Console::FG_GREEN);
-        } catch(\Exception $e)
-        {
-            $this->stdout(\Yii::t('skeeks/dbDumper',"In the process of restoring the dump occurred error").": {$e->getMessage()}\n", Console::FG_RED);
+            $this->stdout(\Yii::t('skeeks/dbDumper', "Dump successfully installed") . "\n", Console::FG_GREEN);
+        } catch (\Exception $e) {
+            $this->stdout(\Yii::t('skeeks/dbDumper',
+                    "In the process of restoring the dump occurred error") . ": {$e->getMessage()}\n", Console::FG_RED);
         }
     }
 
@@ -45,19 +45,18 @@ class MysqlController extends \yii\console\Controller
      */
     public function actionDump()
     {
-        try
-        {
+        try {
             $result = \Yii::$app->dbDumper->dump();
-            $this->stdout(\Yii::t('skeeks/dbDumper',"Dump the database was created successfully").": {$result}\n", Console::FG_GREEN);
+            $this->stdout(\Yii::t('skeeks/dbDumper', "Dump the database was created successfully") . ": {$result}\n",
+                Console::FG_GREEN);
             $removed = \Yii::$app->dbDumper->clear();
-            if ($removed > 0)
-            {
-                $this->stdout(\Yii::t('skeeks/dbDumper', "Removed old dumps").": {$removed}\n", Console::FG_GREEN);
+            if ($removed > 0) {
+                $this->stdout(\Yii::t('skeeks/dbDumper', "Removed old dumps") . ": {$removed}\n", Console::FG_GREEN);
             }
 
-        } catch(\Exception $e)
-        {
-            $this->stdout(\Yii::t('skeeks/dbDumper',"During the dump error occurred").": {$e->getMessage()}\n", Console::FG_RED);
+        } catch (\Exception $e) {
+            $this->stdout(\Yii::t('skeeks/dbDumper', "During the dump error occurred") . ": {$e->getMessage()}\n",
+                Console::FG_RED);
         }
     }
 

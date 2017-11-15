@@ -39,16 +39,17 @@ $this->registerJs(<<<JS
 JS
 )
 ?>
-<?= \yii\helpers\Html::a("<i class=\"glyphicon glyphicon-retweet\"></i> ". \Yii::t('skeeks/dbDumper', 'Refresh cache table structure'), "#" , [
-    'class'         => 'btn btn-primary sx-btn-refresh',
-    'data-method'   => 'post'
-])?>
+<?= \yii\helpers\Html::a("<i class=\"glyphicon glyphicon-retweet\"></i> " . \Yii::t('skeeks/dbDumper',
+        'Refresh cache table structure'), "#", [
+    'class' => 'btn btn-primary sx-btn-refresh',
+    'data-method' => 'post'
+]) ?>
 
-<br />
-<br />
+    <br/>
+    <br/>
 <?= \skeeks\cms\modules\admin\widgets\GridView::widget([
-        'dataProvider'  => new \yii\data\ArrayDataProvider([
-            'allModels' =>
+    'dataProvider' => new \yii\data\ArrayDataProvider([
+        'allModels' =>
             [
                 [
                     'name' => \Yii::t('skeeks/dbDumper', 'Cache table structure'),
@@ -60,17 +61,17 @@ JS
                     'value' => \Yii::$app->db->enableSchemaCache ? "Y" : "N"
                 ]
             ]
-        ]),
-        'columns' => [
-            [
-                'attribute' => 'name',
-                'label' => \Yii::t('skeeks/dbDumper', 'Name setting'),
-            ],
+    ]),
+    'columns' => [
+        [
+            'attribute' => 'name',
+            'label' => \Yii::t('skeeks/dbDumper', 'Name setting'),
+        ],
 
-            [
-                'class' => \skeeks\cms\grid\BooleanColumn::className(),
-                'attribute' => 'value',
-            ]
+        [
+            'class' => \skeeks\cms\grid\BooleanColumn::className(),
+            'attribute' => 'value',
         ]
-    ]);
+    ]
+]);
 ?>

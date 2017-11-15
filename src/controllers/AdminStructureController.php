@@ -2,10 +2,12 @@
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (ÑêèêÑ)
+ * @copyright 2010 SkeekS (ï¿½ï¿½ï¿½ï¿½ï¿½)
  * @date 19.04.2016
  */
+
 namespace skeeks\cms\dbDumper\controllers;
+
 use skeeks\cms\helpers\RequestResponse;
 use skeeks\cms\modules\admin\actions\AdminAction;
 use skeeks\cms\modules\admin\controllers\AdminController;
@@ -38,7 +40,7 @@ class AdminStructureController extends AdminController
         ]);
 
         return $this->render('index', [
-            'dataProvider'  => $dataProvider,
+            'dataProvider' => $dataProvider,
         ]);
     }
 }

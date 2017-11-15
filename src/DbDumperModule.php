@@ -5,7 +5,9 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 19.04.2016
  */
+
 namespace skeeks\cms\dbDumper;
+
 use yii\base\Module;
 
 /**

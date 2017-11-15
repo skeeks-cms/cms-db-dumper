@@ -14,7 +14,7 @@ $schema->refresh();
 ?>
 
 <?= \skeeks\cms\modules\admin\widgets\GridView::widget([
-    'dataProvider'  => $dataProvider,
+    'dataProvider' => $dataProvider,
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
@@ -29,31 +29,28 @@ $schema->refresh();
         ],
 
         [
-            'class'         => \yii\grid\DataColumn::className(),
-            'label'         => \Yii::t('skeeks/dbDumper','Number of columns'),
-            'value' => function(yii\db\TableSchema $model)
-            {
+            'class' => \yii\grid\DataColumn::className(),
+            'label' => \Yii::t('skeeks/dbDumper', 'Number of columns'),
+            'value' => function (yii\db\TableSchema $model) {
                 return count($model->columns);
             }
         ],
 
         [
-            'class'         => \yii\grid\DataColumn::className(),
-            'attribute'     => 'primaryKey',
-            'label'         => \Yii::t('skeeks/dbDumper','Primary keys'),
-            'value' => function(yii\db\TableSchema $model)
-            {
+            'class' => \yii\grid\DataColumn::className(),
+            'attribute' => 'primaryKey',
+            'label' => \Yii::t('skeeks/dbDumper', 'Primary keys'),
+            'value' => function (yii\db\TableSchema $model) {
                 return implode(', ', $model->primaryKey);
             }
         ],
 
 
         [
-            'class'         => \yii\grid\DataColumn::className(),
-            'attribute'     => 'foreignKeys',
-            'label'         => \Yii::t('skeeks/dbDumper', 'Number of foreign keys'),
-            'value' => function(yii\db\TableSchema $model)
-            {
+            'class' => \yii\grid\DataColumn::className(),
+            'attribute' => 'foreignKeys',
+            'label' => \Yii::t('skeeks/dbDumper', 'Number of foreign keys'),
+            'value' => function (yii\db\TableSchema $model) {
                 return count($model->foreignKeys);
             }
         ],
