@@ -3,7 +3,7 @@ CHANGELOG
 
 1.3.1
 -----------------
-  * Agents copnfig update
+  * Agents config update
 
 1.3.0
 -----------------
