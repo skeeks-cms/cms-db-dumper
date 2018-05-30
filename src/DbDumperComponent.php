@@ -10,6 +10,7 @@ namespace skeeks\cms\dbDumper;
 
 use Ifsnop\Mysqldump\Mysqldump;
 use yii\base\Component;
+use yii\base\InvalidArgumentException;
 use yii\db\Connection;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -43,30 +44,18 @@ class DbDumperComponent extends Component
     public function init()
     {
         if (!$this->backupDirPath) {
-            $this->backupDirPath = ROOT_DIR . "/backup/db";
+            $this->backupDirPath = ROOT_DIR."/backup/db";
         }
 
         parent::init();
-
-        /**
-         * TODO: добавить проверки
-         */
-        $this->connection = \Yii::$app->{$this->db};
-
-        if (!is_dir($this->backupDirPath)) {
-            FileHelper::createDirectory($this->backupDirPath);
-        }
-
-        if (!$this->connection || !$this->connection instanceof Connection) {
-            throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper', "Incorrect connection to the database"));
-        }
     }
-
     /**
      * @return int
      */
     public function clear()
     {
+        $this->_ensure();
+
         if (!dir($this->backupDirPath)) {
             return 0;
         }
@@ -75,8 +64,8 @@ class DbDumperComponent extends Component
         $files = \yii\helpers\FileHelper::findFiles($this->backupDirPath);
         foreach ($files as $filePath) {
             $filesObjects[] = [
-                'path' => $filePath,
-                'filemtime' => filemtime($filePath)
+                'path'      => $filePath,
+                'filemtime' => filemtime($filePath),
             ];
         }
 
@@ -102,7 +91,20 @@ class DbDumperComponent extends Component
 
         return $removed;
     }
+    protected function _ensure()
+    {
+        if (isset(\Yii::$app->{$this->db})) {
+            $this->connection = \Yii::$app->{$this->db};
+        }
 
+        if (!$this->connection || !$this->connection instanceof Connection) {
+            throw new InvalidArgumentException("Incorrect connection to the database");
+        }
+
+        if (!is_dir($this->backupDirPath)) {
+            FileHelper::createDirectory($this->backupDirPath);
+        }
+    }
     /**
      *
      * Создание бэкап файла базы данных
@@ -113,29 +115,31 @@ class DbDumperComponent extends Component
      */
     public function dump()
     {
+        $this->_ensure();
+
         if (!is_dir($this->backupDirPath)) {
             FileHelper::createDirectory($this->backupDirPath);
         }
 
         if (!is_dir($this->backupDirPath)) {
             throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',
-                    "Folder to store the backup file is not found and could not be created") . ": " . $this->backupDirPath);
+                    "Folder to store the backup file is not found and could not be created").": ".$this->backupDirPath);
         }
 
-        $filePath = $this->backupDirPath . "/db__" . date('Y-m-d_H-i-s') . ".sql";
+        $filePath = $this->backupDirPath."/db__".date('Y-m-d_H-i-s').".sql";
 
         $dump = new Mysqldump($this->connection->dsn, $this->connection->username, $this->connection->password);
         $dump->start($filePath);
 
         return $filePath;
     }
-
-
     /**
      * @return string
      */
     public function restore($fileDumpSql = null)
     {
+        $this->_ensure();
+
         ini_set("memory_limit", "2048M");
         ignore_user_abort(true);
         set_time_limit(0);
@@ -146,12 +150,12 @@ class DbDumperComponent extends Component
         if (!$fileDumpSql) {
             if (!is_dir($this->backupDirPath)) {
                 throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',
-                        "Do not locate the folder with the backup database") . ": " . $this->backupDirPath);
+                        "Do not locate the folder with the backup database").": ".$this->backupDirPath);
             }
 
             if (!$files = FileHelper::findFiles($this->backupDirPath)) {
                 throw new \InvalidArgumentException(\Yii::t('skeeks/dbDumper',
-                        "Backup files found in a dir") . ": " . $this->backupDirPath);
+                        "Backup files found in a dir").": ".$this->backupDirPath);
             }
 
             $filePath = $files[0];
@@ -171,6 +175,5 @@ class DbDumperComponent extends Component
         }
 
         \Yii::$app->db->createCommand($sql)->execute();
-
     }
 }

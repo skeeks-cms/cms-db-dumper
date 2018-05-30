@@ -9,10 +9,7 @@
 namespace skeeks\cms\dbDumper\controllers;
 
 use skeeks\cms\helpers\RequestResponse;
-use skeeks\cms\modules\admin\actions\AdminAction;
 use skeeks\cms\modules\admin\controllers\AdminController;
-use yii\data\ArrayDataProvider;
-use yii\web\Response;
 
 /**
  * Class AdminBackupController
@@ -46,7 +43,7 @@ class AdminBackupController extends AdminController
                 $rr->success = true;
                 $rr->message = \Yii::t('skeeks/dbDumper', "A copy created successfully");
                 $rr->data = [
-                    'result' => $result
+                    'result' => $result,
                 ];
 
             } catch (\Exception $e) {

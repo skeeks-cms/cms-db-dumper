@@ -39,10 +39,10 @@ $this->registerJs(<<<JS
 JS
 )
 ?>
-<?= \yii\helpers\Html::a("<i class=\"glyphicon glyphicon-retweet\"></i> " . \Yii::t('skeeks/dbDumper',
+<?= \yii\helpers\Html::a("<i class=\"glyphicon glyphicon-retweet\"></i> ".\Yii::t('skeeks/dbDumper',
         'Refresh cache table structure'), "#", [
-    'class' => 'btn btn-primary sx-btn-refresh',
-    'data-method' => 'post'
+    'class'       => 'btn btn-primary sx-btn-refresh',
+    'data-method' => 'post',
 ]) ?>
 
     <br/>
@@ -52,26 +52,26 @@ JS
         'allModels' =>
             [
                 [
-                    'name' => \Yii::t('skeeks/dbDumper', 'Cache table structure'),
-                    'value' => \Yii::$app->db->enableSchemaCache ? "Y" : "N"
+                    'name'  => \Yii::t('skeeks/dbDumper', 'Cache table structure'),
+                    'value' => \Yii::$app->db->enableSchemaCache ? "Y" : "N",
                 ],
 
                 [
-                    'name' => \Yii::t('skeeks/dbDumper', 'Cache query'),
-                    'value' => \Yii::$app->db->enableSchemaCache ? "Y" : "N"
-                ]
-            ]
+                    'name'  => \Yii::t('skeeks/dbDumper', 'Cache query'),
+                    'value' => \Yii::$app->db->enableSchemaCache ? "Y" : "N",
+                ],
+            ],
     ]),
-    'columns' => [
+    'columns'      => [
         [
             'attribute' => 'name',
-            'label' => \Yii::t('skeeks/dbDumper', 'Name setting'),
+            'label'     => \Yii::t('skeeks/dbDumper', 'Name setting'),
         ],
 
         [
-            'class' => \skeeks\cms\grid\BooleanColumn::className(),
+            'class'     => \skeeks\cms\grid\BooleanColumn::className(),
             'attribute' => 'value',
-        ]
-    ]
+        ],
+    ],
 ]);
 ?>

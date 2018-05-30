@@ -9,10 +9,7 @@
 namespace skeeks\cms\dbDumper\controllers;
 
 use skeeks\cms\helpers\RequestResponse;
-use skeeks\cms\modules\admin\actions\AdminAction;
 use skeeks\cms\modules\admin\controllers\AdminController;
-use yii\data\ArrayDataProvider;
-use yii\web\Response;
 
 /**
  * Class AdminSettingsController

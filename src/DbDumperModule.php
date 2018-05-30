@@ -8,8 +8,6 @@
 
 namespace skeeks\cms\dbDumper;
 
-use yii\base\Module;
-
 /**
  * Class DbDumperModule
  * @package skeeks\cms\dbDumper

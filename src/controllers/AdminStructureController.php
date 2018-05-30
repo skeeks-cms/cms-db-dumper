@@ -8,8 +8,6 @@
 
 namespace skeeks\cms\dbDumper\controllers;
 
-use skeeks\cms\helpers\RequestResponse;
-use skeeks\cms\modules\admin\actions\AdminAction;
 use skeeks\cms\modules\admin\controllers\AdminController;
 use yii\data\ArrayDataProvider;
 
@@ -30,8 +28,8 @@ class AdminStructureController extends AdminController
     {
         //print_r(\Yii::$app->db->getSchema()->getTableSchemas());die;
         $dataProvider = new ArrayDataProvider([
-            'allModels' => \Yii::$app->db->getSchema()->getTableSchemas(),
-            'sort' => [
+            'allModels'  => \Yii::$app->db->getSchema()->getTableSchemas(),
+            'sort'       => [
                 'attributes' => ['name', 'fullName'],
             ],
             'pagination' => [

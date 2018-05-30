@@ -4,6 +4,6 @@ return [
         [
             'dbDumper' => [
                 'controllerNamespace' => 'skeeks\cms\dbDumper\console\controllers',
-            ]
-        ]
+            ],
+        ],
 ];

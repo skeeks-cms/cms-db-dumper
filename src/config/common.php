@@ -10,29 +10,29 @@ return [
             'translations' =>
                 [
                     'skeeks/dbDumper' => [
-                        'class' => 'yii\i18n\PhpMessageSource',
+                        'class'    => 'yii\i18n\PhpMessageSource',
                         'basePath' => '@skeeks/cms/dbDumper/messages',
-                        'fileMap' => [
+                        'fileMap'  => [
                             'skeeks/dbDumper' => 'main.php',
                         ],
-                    ]
-                ]
+                    ],
+                ],
         ],
 
         'cmsAgent' => [
             'commands' => [
                 'dbDumper/mysql/dump' => [
-                    'class' => \skeeks\cms\agent\CmsAgent::class,
-                    'name' => ['skeeks/dbDumper', 'Backup Database'],
+                    'class'    => \skeeks\cms\agent\CmsAgent::class,
+                    'name'     => ['skeeks/dbDumper', 'Backup Database'],
                     'interval' => 3600 * 24,
                 ],
-            ]
+            ],
         ],
     ],
 
     'modules' => [
         'dbDumper' => [
             'class' => '\skeeks\cms\dbDumper\DbDumperModule',
-        ]
-    ]
+        ],
+    ],
 ];

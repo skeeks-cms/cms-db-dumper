@@ -50,18 +50,15 @@ Configuration app
 
 ```
 
-##Links
-* [Web site](https://en.cms.skeeks.com)
-* [Web site (rus)](https://cms.skeeks.com)
+Links
+-----
+* [Web site](https://cms.skeeks.com)
 * [Author](https://skeeks.com)
-
-
 
 ___
 
 > [![skeeks!](https://skeeks.com/img/logo/logo-no-title-80px.png)](https://skeeks.com)  
 <i>SkeekS CMS (Yii2) — fast, simple, effective!</i>  
 [skeeks.com](https://skeeks.com) | [cms.skeeks.com](https://cms.skeeks.com)
-
 
 
