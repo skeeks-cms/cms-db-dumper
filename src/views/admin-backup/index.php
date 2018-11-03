@@ -73,7 +73,7 @@ JS
     );
 
     ?>
-    <?= \yii\helpers\Html::a("<i class=\"glyphicon glyphicon-save\"></i> ".\Yii::t('skeeks/dbDumper',
+    <?= \yii\helpers\Html::a("<i class=\"fa fa-check\"></i> ".\Yii::t('skeeks/dbDumper',
             'Make a backup'), "#", [
         'class' => 'btn btn-primary sx-btn-make',
     ]); ?>
