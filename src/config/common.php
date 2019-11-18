@@ -28,6 +28,24 @@ return [
                 ],
             ],
         ],
+
+        'authManager' => [
+            'config' => [
+                'roles' => [
+                    [
+                        'name'  => \skeeks\cms\rbac\CmsManager::ROLE_ADMIN,
+                        'child' => [
+                            //Есть доступ к системе администрирования
+                            'permissions' => [
+                                "dbDumper/admin-structure",
+                                "dbDumper/admin-settings",
+                                "dbDumper/admin-backup",
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ],
 
     'modules' => [
