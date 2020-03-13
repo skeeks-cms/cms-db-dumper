@@ -1,23 +1,22 @@
 <?php
 /**
+ * @link https://cms.skeeks.com/
+ * @copyright Copyright (c) 2010 SkeekS
+ * @license https://cms.skeeks.com/license/
  * @author Semenov Alexander <semenov@skeeks.com>
- * @link http://skeeks.com/
- * @copyright 2010 SkeekS (СкикС)
- * @date 19.04.2016
  */
 
 namespace skeeks\cms\dbDumper;
 
 use Ifsnop\Mysqldump\Mysqldump;
-use yii\base\Component;
+use skeeks\cms\base\Component;
 use yii\base\InvalidArgumentException;
 use yii\db\Connection;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 
 /**
- * Class DbDumperComponent
- * @package skeeks\cms\dbDumper
+ * @author Semenov Alexander <semenov@skeeks.com>
  */
 class DbDumperComponent extends Component
 {
@@ -34,7 +33,7 @@ class DbDumperComponent extends Component
     /**
      * @var int Number of backup files. The old will be deleted
      */
-    public $totalBackups = 15;
+    public $totalBackups = 5;
 
     /**
      * @var Connection
@@ -49,6 +48,7 @@ class DbDumperComponent extends Component
 
         parent::init();
     }
+
     /**
      * @return int
      */
@@ -91,6 +91,8 @@ class DbDumperComponent extends Component
 
         return $removed;
     }
+
+
     protected function _ensure()
     {
         if (isset(\Yii::$app->{$this->db})) {
@@ -105,6 +107,8 @@ class DbDumperComponent extends Component
             FileHelper::createDirectory($this->backupDirPath);
         }
     }
+
+
     /**
      *
      * Создание бэкап файла базы данных
@@ -128,7 +132,9 @@ class DbDumperComponent extends Component
 
         $filePath = $this->backupDirPath."/db__".date('Y-m-d_H-i-s').".sql";
 
-        $dump = new Mysqldump($this->connection->dsn, $this->connection->username, $this->connection->password);
+        $dump = new Mysqldump($this->connection->dsn, $this->connection->username, $this->connection->password, [
+            //'compress' => Mysqldump::GZIP
+        ]);
         $dump->start($filePath);
 
         return $filePath;
