@@ -10,6 +10,7 @@ namespace skeeks\cms\dbDumper;
 
 use Ifsnop\Mysqldump\Mysqldump;
 use skeeks\cms\base\Component;
+use skeeks\cms\dbDumper\assets\DbDumperAsset;
 use yii\base\InvalidArgumentException;
 use yii\db\Connection;
 use yii\helpers\ArrayHelper;
@@ -39,6 +40,21 @@ class DbDumperComponent extends Component
      * @var Connection
      */
     public $connection;
+
+    /**
+     * Можно задать название и описание компонента
+     * @return array
+     */
+    static public function descriptorConfig()
+    {
+        return array_merge(parent::descriptorConfig(), [
+            'name' => "Сохранение базы данных",
+            'image' => [
+                DbDumperAsset::class, 'icons/mysql-dump.jpg'
+            ],
+        ]);
+    }
+
 
     public function init()
     {
