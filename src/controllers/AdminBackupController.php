@@ -1,25 +1,34 @@
 <?php
 /**
+ * @link https://cms.skeeks.com/
+ * @copyright Copyright (c) 2010 SkeekS
+ * @license https://cms.skeeks.com/license/
  * @author Semenov Alexander <semenov@skeeks.com>
- * @link http://skeeks.com/
- * @copyright 2010 SkeekS (СкикС)
- * @date 28.02.2017
  */
-
 namespace skeeks\cms\dbDumper\controllers;
 
+use skeeks\cms\backend\BackendController;
 use skeeks\cms\helpers\RequestResponse;
 use skeeks\cms\modules\admin\controllers\AdminController;
 
 /**
- * Class AdminBackupController
- * @package skeeks\cms\dbDumper\controllers
+ * @author Semenov Alexander <semenov@skeeks.com>
  */
-class AdminBackupController extends AdminController
+class AdminBackupController extends BackendController
 {
     public function init()
     {
         $this->name = \Yii::t('skeeks/dbDumper', "Backups");
+
+
+        $this->generateAccessActions = false;
+        $this->accessCallback = function () {
+            if (!\Yii::$app->cms->site->is_default) {
+                return false;
+            }
+            return \Yii::$app->user->can($this->uniqueId);
+        };
+
 
         parent::init();
     }
