@@ -120,7 +120,7 @@ JS
         ]);
         ?>
 
-        <?
+        <?/*
         echo \mihaildev\elfinder\ElFinder::widget([
             'language'         => \Yii::$app->language,
             'controller'       => 'cms/elfinder-full',
@@ -133,7 +133,7 @@ JS
                 'style' => 'width: 100%; height: 800px;',
             ],
         ]);
-        ?>
+        */?>
     <? else: ?>
         <p><?= \Yii::t('skeeks/dbDumper', 'Directory with files of backups database is not found.') ?></p>
     <? endif; ?>
