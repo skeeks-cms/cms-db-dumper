@@ -24,7 +24,7 @@
         }
     ],
     "require": {
-        "skeeks/cms": "^5.0 || dev-master",
+        "skeeks/cms": "^6.0 || dev-master",
         "ifsnop/mysqldump-php": "^2.4.0"
     },
     "autoload": {
