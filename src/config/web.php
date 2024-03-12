@@ -4,7 +4,7 @@ return [
         'backendAdmin' => [
             'menu' => [
                 'data' => [
-                    'other' => [
+                    'settings' => [
                         'items' => [
                             [
                                 "name"  => ['skeeks/dbDumper', "Database"],
