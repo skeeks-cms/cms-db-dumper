@@ -146,11 +146,17 @@ class DbDumperComponent extends Component
                     "Folder to store the backup file is not found and could not be created").": ".$this->backupDirPath);
         }
 
-        $filePath = $this->backupDirPath."/db__".date('Y-m-d_H-i-s').".sql";
+        $filePath = $this->backupDirPath."/db__".date('Y-m-d_H-i-s').".sql.gz";
 
         $dump = new Mysqldump($this->connection->dsn, $this->connection->username, $this->connection->password, [
-            //'compress' => Mysqldump::GZIP
+            'compress' => Mysqldump::GZIP
         ]);
+
+        $dump->setTableLimits(array(
+            'log_db_target' => 1,
+            'cms_session' => 1,
+        ));
+
         $dump->start($filePath);
 
         return $filePath;
