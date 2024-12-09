@@ -10,7 +10,7 @@ namespace skeeks\cms\dbDumper\controllers;
 
 use skeeks\cms\backend\BackendController;
 use skeeks\cms\helpers\RequestResponse;
-use skeeks\cms\modules\admin\controllers\AdminController;
+use skeeks\cms\rbac\CmsManager;
 
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
@@ -22,12 +22,7 @@ class AdminSettingsController extends BackendController
         $this->name = \Yii::t('skeeks/dbDumper', "Settings");
 
         $this->generateAccessActions = false;
-        $this->accessCallback = function () {
-            if (!\Yii::$app->skeeks->site->is_default) {
-                return false;
-            }
-            return \Yii::$app->user->can($this->uniqueId);
-        };
+        $this->permissionName = CmsManager::PERMISSION_ROLE_ADMIN_ACCESS;
 
         parent::init();
     }

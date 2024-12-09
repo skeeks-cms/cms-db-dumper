@@ -9,6 +9,7 @@
 namespace skeeks\cms\dbDumper\controllers;
 
 use skeeks\cms\backend\BackendController;
+use skeeks\cms\rbac\CmsManager;
 use yii\data\ArrayDataProvider;
 
 /**
@@ -21,12 +22,7 @@ class AdminStructureController extends BackendController
         $this->name = \Yii::t('skeeks/dbDumper', "The structure of the database");
 
         $this->generateAccessActions = false;
-        $this->accessCallback = function () {
-            if (!\Yii::$app->skeeks->site->is_default) {
-                return false;
-            }
-            return \Yii::$app->user->can($this->uniqueId);
-        };
+        $this->permissionName = CmsManager::PERMISSION_ROOT_ACCESS;
 
         parent::init();
     }
